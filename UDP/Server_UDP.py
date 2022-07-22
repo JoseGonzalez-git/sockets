@@ -38,4 +38,5 @@ def order_db(db):
 def append_db(data,db):
     db.append([int(data[0]), data[1], float(data[2])])
 
-main()
+if __name__ == "__main__" :
+    main()

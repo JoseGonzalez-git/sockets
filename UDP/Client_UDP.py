@@ -1,5 +1,4 @@
 import socket
-from tkinter import E
 
 def main():
     # Nombre del servidor
@@ -51,5 +50,5 @@ def client_contunue(client_socket, server_name, server_port):
     else:
         return True
 
-
-main()
+if __name__ == "__main__" :
+    main()
