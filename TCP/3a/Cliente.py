@@ -1,3 +1,4 @@
+import ast
 from socket import socket, AF_INET, SOCK_STREAM
 
 def main():
@@ -8,9 +9,9 @@ def main():
     exit = False
     option = 0
     while not exit:
-        print ("1. Ingresar Estudiante")
-        print ("2. Salir")
-        print ("Elige una opcion")
+        print("1. Ingresar Estudiante")
+        print("2. Salir")
+        print("Elige una opcion")
         option = request_option()
         if option == 1:
             comunication_to_client(client_socket)
@@ -19,7 +20,7 @@ def main():
         elif option == 2:
             client_socket.send("Fin".encode())
             message = client_socket.recv(1024)
-            print(message.decode())
+            print(show_data(ast.literal_eval(message.decode())))
             client_socket.close()
             exit = True
 
@@ -47,6 +48,12 @@ def comunication_to_client(client_socket):
     client_data = dict(id=identifications, name=names, last_name=last_names, note1=listnotes[0][0], note2=listnotes[1][
                        0], note3=listnotes[2][0], percentage1=listnotes[0][1], percentage2=listnotes[1][1], percentage3=listnotes[2][1])
     client_socket.send(str(client_data).encode())
+
+def show_data(vector):
+    for i in range(len(vector)):
+        message = "---------------------\nID: {}\nNombre: {}\nApellido: {}\nNota: {}\n".format(
+            vector[i]['id'], vector[i]['name'], vector[i]['last_name'], vector[i]['note'])
+    return message
 
 if __name__ == "__main__":
     main()
