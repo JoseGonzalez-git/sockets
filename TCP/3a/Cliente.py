@@ -18,8 +18,8 @@ def main():
             print(message.decode())
         elif option == 2:
             client_socket.send("Fin".encode())
-            msg = client_socket.recv(1024)
-            print(msg.decode())
+            message = client_socket.recv(1024)
+            print(message.decode())
             client_socket.close()
             exit = True
 
