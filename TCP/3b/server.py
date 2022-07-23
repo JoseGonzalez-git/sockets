@@ -11,7 +11,7 @@ print("Server waiting for connections")
 while 1:
     conn, addr = server.accept()
     print("Receiving messages from client", addr)
-    req = conn.recv(2048)
+    req = conn.recv(1024)
     teams = str(req).split(",")
     teams = list(map(lambda t : Team(t.strip()), teams))
     champion = Championship(teams)
